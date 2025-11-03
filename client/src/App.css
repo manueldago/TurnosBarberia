@@ -84,3 +84,11 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   }
 }
+
+/* Fondo de barbería cuando no hay sesión */
+.body-logged-out {
+  background-image: url('https://images.unsplash.com/photo-1517832606299-7ae9b720a186?q=80&w=1600&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
