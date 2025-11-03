@@ -1,35 +1,23 @@
 const express = require('express');
 const cors = require('cors');
 
-const {
-  listAppointments,
-  getAppointment,
-  addAppointment,
-  removeAppointment
-} = require('./appointmentsStore');
-
 const app = express();
 const PORT = process.env.PORT || 4000;
 
 app.use(cors());
 app.use(express.json());
 
+const appointments = [
+  { id: 1, client: 'Juan Pérez', service: 'Corte clásico', time: '2025-11-04T09:00:00Z' },
+  { id: 2, client: 'María Gómez', service: 'Afeitado', time: '2025-11-04T10:00:00Z' }
+];
+
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
 app.get('/api/appointments', (_req, res) => {
-  res.json(listAppointments());
-});
-
-app.get('/api/appointments/:id', (req, res) => {
-  const appointment = getAppointment(req.params.id);
-
-  if (!appointment) {
-    return res.status(404).json({ message: 'Turno no encontrado.' });
-  }
-
-  res.json(appointment);
+  res.json(appointments);
 });
 
 app.post('/api/appointments', (req, res) => {
@@ -39,23 +27,15 @@ app.post('/api/appointments', (req, res) => {
     return res.status(400).json({ message: 'Los campos client, service y time son obligatorios.' });
   }
 
-  const parsedTime = Date.parse(time);
-  if (Number.isNaN(parsedTime)) {
-    return res.status(400).json({ message: 'El campo time debe ser una fecha válida.' });
-  }
+  const appointment = {
+    id: appointments.length + 1,
+    client,
+    service,
+    time
+  };
 
-  const appointment = addAppointment({ client, service, time: new Date(parsedTime).toISOString() });
+  appointments.push(appointment);
   res.status(201).json(appointment);
-});
-
-app.delete('/api/appointments/:id', (req, res) => {
-  const removed = removeAppointment(req.params.id);
-
-  if (!removed) {
-    return res.status(404).json({ message: 'Turno no encontrado.' });
-  }
-
-  res.status(204).send();
 });
 
 app.listen(PORT, () => {

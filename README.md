@@ -1,6 +1,6 @@
-# TurnosBarberia
+# Turnos Barbería
 
-Gestión de turnos para barbería. Aplicación dividida en **backend** y **frontend** para administrar reservas y el flujo completo de trabajo.
+Aplicación dividida en **backend** y **frontend** para gestionar turnos de una barbería.
 
 ## Requisitos
 
@@ -35,24 +35,8 @@ Dentro del directorio `client/` puedes ejecutar:
 
 ## Arquitectura
 
-- **server/**: API REST construida con Express. Expone endpoints para consultar, crear y eliminar turnos.
+- **server/**: API REST construida con Express. Expone endpoints para consultar y crear turnos.
 - **client/**: Interfaz React creada con Vite. Consume la API del backend y muestra los turnos disponibles.
-
-### Endpoints disponibles
-
-- `GET /api/health`: comprueba el estado del backend.
-- `GET /api/appointments`: devuelve todos los turnos disponibles ordenados cronológicamente.
-- `GET /api/appointments/:id`: recupera un turno específico.
-- `POST /api/appointments`: crea un turno nuevo. Requiere los campos `client`, `service` y `time`.
-- `DELETE /api/appointments/:id`: elimina un turno existente.
-
-### Flujo en el frontend
-
-La pantalla principal permite:
-
-- Ver el estado de la API y la lista de turnos.
-- Registrar un turno con nombre del cliente, servicio y fecha/hora.
-- Eliminar turnos existentes.
 
 ## Puesta en marcha
 
