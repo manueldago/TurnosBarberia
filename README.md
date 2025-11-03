@@ -1,6 +1,6 @@
-# Turnos Barbería
+# TurnosBarberia
 
-Aplicación dividida en **backend** y **frontend** para gestionar turnos de una barbería.
+Gestión de turnos para barbería. Aplicación dividida en **backend** y **frontend** para administrar reservas y el flujo completo de trabajo.
 
 ## Requisitos
 
